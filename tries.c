@@ -10,7 +10,6 @@ struct Trie
   struct Trie *pChildren[26];
 };
 
-// Inserts the word to the trie structure
 void insert(struct Trie *pTrie, char *word)
 {
   struct Trie *p = pTrie;
@@ -31,7 +30,6 @@ void insert(struct Trie *pTrie, char *word)
     p = p->pChildren[word[i] - 'a'];
     i++;
   }
-  // Increment the count only if it's the last character of the word
   if (word[i] == '\0')
   {
     p->count++;
@@ -42,7 +40,6 @@ void insert(struct Trie *pTrie, char *word)
 // computes the number of occurances of the word
 int numberOfOccurances(struct Trie *pTrie, char *word)
 {
-  // your code here
   struct Trie *p = pTrie;
   int i = 0;
   while (word[i] != '\0')
@@ -57,10 +54,8 @@ int numberOfOccurances(struct Trie *pTrie, char *word)
   return p->count;
 }
 
-// deallocate the trie structure
 struct Trie *deallocateTrie(struct Trie *pTrie)
 {
-  // your code here
   struct Trie *p = pTrie;
   for (int i = 0; i < 26; i++)
   {
@@ -73,10 +68,8 @@ struct Trie *deallocateTrie(struct Trie *pTrie)
   return NULL;
 }
 
-// Initializes a trie structure
 struct Trie *createTrie()
 {
-  // your code here
   struct Trie *pTrie = (struct Trie *)malloc(sizeof(struct Trie));
   pTrie->letter = '\0';
   pTrie->count = 0;
@@ -87,8 +80,6 @@ struct Trie *createTrie()
   return pTrie;
 }
 
-// this function will return number of words in the dictionary,
-// and read all the words in the dictionary to the structure words
 int readDictionary(char *filename, char **pInWords)
 {
   FILE *fp = fopen(filename, "r");
@@ -126,7 +117,6 @@ int main(void)
 	{
 		insert(pTrie, inWords[i]);
 	}
-	// parse lineby line, and insert each word to the trie data structure
 	char *pWords[] = {"notaword", "ucf", "no", "note", "corg"};
 	for (int i=0;i<5;i++)
 	{
